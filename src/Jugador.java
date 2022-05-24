@@ -24,15 +24,16 @@ public class Jugador implements Comparable, Serializable{
     }//FIN DE CONSTRUCTOR
 
     /**
-     * Regresa 1 si ya se debe comenzar a jugar, 2 para volver al inicio 0 en otro caso
+     * Regresa 1 si ya se debe comenzar a jugar, 2 para volver al inicio y 0 en otro caso
      * @return
      */
     public int Bienvenida(){
         Scanner scan=new Scanner(System.in);
         System.out.println("Bienvenid@ a tu sesión");
-        System.out.println("Tu saldo actual es de $"+ cuenta.consultarSaldo());
+        System.out.println("Tu saldo actual es de $"+ cuenta.consultarSaldo());//Mostrar el saldo actual del jugador
         boolean incorrecto=true;
         while(incorrecto){
+            //Opciones
             System.out.println("¿Qué quieres hacer?");
             System.out.println("1) Ver ajustes de cuenta");
             System.out.println("2) Comenzar a apostar");
@@ -42,7 +43,7 @@ public class Jugador implements Comparable, Serializable{
                 r= scan.nextInt();
                 if(r>0&&r<4){
                     switch (r) {
-                        case 1:
+                        case 1://Ver ajustes de cuenta
                             ajustesCuenta();
                             return 0;
                         case 2:
@@ -56,9 +57,9 @@ public class Jugador implements Comparable, Serializable{
                     }
                     incorrecto=false;
                 }else{
-                    System.out.println("Opcion no válida");
+                    System.out.println("Opcion no válida");//Si la respuesta no es 1, 2 ni 3
                 }
-            }catch(InputMismatchException e){
+            }catch(InputMismatchException e){//Si no se ingresó un numero como opción
                 System.out.println("Probablemente no ingresaste un número");
                 scan.next();
             }
@@ -66,6 +67,9 @@ public class Jugador implements Comparable, Serializable{
         return 0;
     }
 
+    /**
+     * Metodo para poder manipular la cuenta
+     */
     public void ajustesCuenta(){
         Scanner sc=new Scanner(System.in);
         System.out.println("*************Ajustes de cuenta********");
@@ -81,7 +85,7 @@ public class Jugador implements Comparable, Serializable{
             System.out.println("7) Volver a mi sesion");
             try{
                 int respuesta=sc.nextInt();
-                if(respuesta<1||respuesta>6){
+                if(respuesta<1||respuesta>6){//Si el numero ingresado no corresponde a alguna opcion
                     System.out.println("Opcion no valida");
                 }else{
                     switch (respuesta) {
@@ -89,7 +93,7 @@ public class Jugador implements Comparable, Serializable{
                             System.out.println("Saldo disponible: "+cuenta.consultarSaldo());
                             incorrecto=false;
                             break;
-                        case 2://DEpositar
+                        case 2://Depositar
                             System.out.println("Ingresa el monto a depositar");
                             boolean incorrecto2=true;
                             while(incorrecto2){
@@ -141,7 +145,7 @@ public class Jugador implements Comparable, Serializable{
                             break;
                     }
                 }
-            }catch(InputMismatchException e){
+            }catch(InputMismatchException e){//Si no se ingresó un numero como opción
                 System.out.println("Probablemente no ingresaste un número");
                 sc.next();
             }
@@ -150,7 +154,7 @@ public class Jugador implements Comparable, Serializable{
 
 
     /**
-     * Metodo equals
+     * Metodo compareTo para comparar a los jugadores con base en su nombre de usuario
      * @param o
      * @return
      */
@@ -170,6 +174,9 @@ public class Jugador implements Comparable, Serializable{
         }
     }//FIN DE COMPARE TO
 
+    /**
+     * Metodo equals basandose en el nombre de usuario
+     */
     @Override public boolean equals(Object obj){
         if(!obj.getClass().equals(this.getClass())){
             return false;
@@ -184,6 +191,9 @@ public class Jugador implements Comparable, Serializable{
         }
     }//FIN DE EQUALS
 
+    /**
+     * ToString que regresa el nombre de usuario
+     */
     public String toString(){
         return nombreUsuario;
     }//FIN DE TO STRING

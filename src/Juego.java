@@ -3,19 +3,32 @@ import java.io.Serializable;
 import java.util.Iterator;
 public class Juego implements Serializable{
 
-    ArbolBinarioBusqueda<Jugador> arbol;
-    Lista<Candidato> candidatos;
+    ArbolBinarioBusqueda<Jugador> arbol;//el arbol de usuarios
+    Lista<Candidato> candidatos;//La lista de candidatos que son los posibles jugadores
 
+    /**
+     * Constructor del juego
+     */
     public Juego(){
-        arbol=new ArbolBinarioBusqueda<Jugador>();
-        candidatos=new Lista<Candidato>();
-        //agregar a los candidatos a la lista
+        arbol=new ArbolBinarioBusqueda<Jugador>();//creamos el arbol de usuarios
+        candidatos=new Lista<Candidato>();//creamos la lista de candidatos
+
+        //Por hacer: agregar a los candidatos a la lista
     }
 
+    /**
+     * Metodo para añadir un jugador al arbol de usuarios
+     * @param nuevo
+     */
     public void addJugador(Jugador nuevo){
         arbol.add(nuevo);
     }
 
+    /**
+     * Metodo para buscar un jugador en el arbol de usuarios
+     * @param j
+     * @return
+     */
     public boolean buscar(Jugador j){
         return arbol.buscaElemento(j);
     }
@@ -35,7 +48,15 @@ public class Juego implements Serializable{
         }
     }
 
+    /**
+     * Metodo para agregar candidatos a la lista de candidatos
+     */
     public void agregaCandidatos(){
+
+
+        //Todavía revisando
+
+
         Iterator<Candidato> iterador=candidatos.iterator();
         int contador=40;
         for(int i=0;i<16;i++){
