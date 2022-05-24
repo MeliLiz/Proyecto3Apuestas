@@ -2,8 +2,12 @@ package src.edd;
 import java.lang.Comparable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.io.Serializable;
 
-public class Jugador implements Comparable{
+/**
+ * Clase que representa la sesion del jugador
+ */
+public class Jugador implements Comparable, Serializable{
     String nombreUsuario;
     Cuenta cuenta;
     String key;
@@ -19,6 +23,49 @@ public class Jugador implements Comparable{
         this.key=key;
     }//FIN DE CONSTRUCTOR
 
+    /**
+     * Regresa 1 si ya se debe comenzar a jugar, 2 para volver al inicio 0 en otro caso
+     * @return
+     */
+    public int Bienvenida(){
+        Scanner scan=new Scanner(System.in);
+        System.out.println("Bienvenid@ a tu sesión");
+        System.out.println("Tu saldo actual es de $"+ cuenta.consultarSaldo());
+        boolean incorrecto=true;
+        while(incorrecto){
+            System.out.println("¿Qué quieres hacer?");
+            System.out.println("1) Ver ajustes de cuenta");
+            System.out.println("2) Comenzar a apostar");
+            System.out.println("3) Ir al inicio");
+            int r;
+            try{
+                r= scan.nextInt();
+                if(r>0&&r<4){
+                    switch (r) {
+                        case 1:
+                            ajustesCuenta();
+                            return 0;
+                        case 2:
+                            //apostar
+                            return 1;
+                        case 3:
+                            //regresar al inicio
+                            return 2;
+                        default:
+                            break;
+                    }
+                    incorrecto=false;
+                }else{
+                    System.out.println("Opcion no válida");
+                }
+            }catch(InputMismatchException e){
+                System.out.println("Probablemente no ingresaste un número");
+                scan.next();
+            }
+        }
+        return 0;
+    }
+
     public void ajustesCuenta(){
         Scanner sc=new Scanner(System.in);
         System.out.println("*************Ajustes de cuenta********");
@@ -31,6 +78,7 @@ public class Jugador implements Comparable{
             System.out.println("4) Consultar historial de movimentos");
             System.out.println("5) Ver apuestas ganadas");
             System.out.println("6) Ver apuestas perdidas");
+            System.out.println("7) Volver a mi sesion");
             try{
                 int respuesta=sc.nextInt();
                 if(respuesta<1||respuesta>6){
@@ -89,7 +137,7 @@ public class Jugador implements Comparable{
                             System.out.println("**********Apuestas perdidas**********************");
                             System.out.println(cuenta.apuestasPerdidas);
                         break;
-                        default:
+                        default://volver a la sesion
                             break;
                     }
                 }
@@ -99,6 +147,7 @@ public class Jugador implements Comparable{
             }
         }
     }//FIN DE AJUSTES CUENTA
+
 
     /**
      * Metodo equals
@@ -129,7 +178,7 @@ public class Jugador implements Comparable{
             if(j.nombreUsuario.equals(this.nombreUsuario)){
                 return true;
             }else{
-                System.out.println("else");
+                //System.out.println("else");
                 return false;
             }
         }

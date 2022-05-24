@@ -3,11 +3,13 @@ package src.edd;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Comparator;
+import java.util.Random;
+import java.io.Serializable;
 
 // iterador
 //next
 
-public class Lista<T> implements Collection<T> {
+public class Lista<T> implements Collection<T>, Serializable {
 
     // Clase Nodo
     private class Nodo {
@@ -82,6 +84,7 @@ public class Lista<T> implements Collection<T> {
     private Nodo cabeza;
     private Nodo ultimo;
     private int longi;
+    public Random random;
 
     /**
      * Metodo para obtener el primer elemento de la lista. Si la lista es vacía regresamos null
@@ -729,4 +732,22 @@ public class Lista<T> implements Collection<T> {
     public IteradorLista<T> iteradorLista() {
         return new Iterador();
     }//FIN DE ITERADOR LISTA
+
+    /**
+     * Metodo para revolver los elementos de la lista
+     */
+    public void shuffle(){
+        Random random = new Random();
+        int posicionAleatoria=0;
+        T elem1,elem2;
+        for(int i=0;i<this.size();i++){
+            posicionAleatoria=random.nextInt(this.size()-1);
+            elem1=this.elementoEnPos(i);
+            elem2=this.elementoEnPos(posicionAleatoria);
+            this.eliminaEnPos(i);
+            this.insert(i, elem2);
+            this.eliminaEnPos(posicionAleatoria);
+            this.insert(posicionAleatoria, elem1);
+        } 
+    }
 }

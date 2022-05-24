@@ -2,8 +2,9 @@ package src.edd;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.io.Serializable;
 
-public class Cuenta {
+public class Cuenta implements Serializable{
     private int saldoDisponible;
     Lista<String> movimientos;
     Lista<String> apuestasGanadas;

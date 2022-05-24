@@ -56,7 +56,17 @@ public class Apuestas {
                                         System.out.println("Contraseña incorrecta");
                                     }else{
                                         incorrecto2=false;
-                                        empezar();
+                                        boolean ya=true;
+                                        while(ya){
+                                            int opc=jugador.Bienvenida();
+                                            if(opc==1){
+                                                empezar(jugador);
+                                                ya=false;
+                                            }else if(opc==2){
+                                                menu(juego);
+                                                ya=false;
+                                            }
+                                        }   
                                     }
                                 }
                             }
@@ -123,7 +133,11 @@ public class Apuestas {
         menu(juego);
     }// FIN DEL MAIN
 
-    public static void empezar(){
+    /**
+     * Metodo para comenzar las apuestas y las carreras
+     * @param jugador
+     */
+    public static void empezar(Jugador jugador){
 
     }// FIN DE EMPEZAR
 }

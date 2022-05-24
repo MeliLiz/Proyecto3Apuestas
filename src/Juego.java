@@ -1,11 +1,15 @@
 package src.edd;
 import java.io.Serializable;
+import java.util.Iterator;
 public class Juego implements Serializable{
 
     ArbolBinarioBusqueda<Jugador> arbol;
+    Lista<Candidato> candidatos;
 
     public Juego(){
         arbol=new ArbolBinarioBusqueda<Jugador>();
+        candidatos=new Lista<Candidato>();
+        //agregar a los candidatos a la lista
     }
 
     public void addJugador(Jugador nuevo){
@@ -30,4 +34,26 @@ public class Juego implements Serializable{
             return null;
         }
     }
+
+    public void agregaCandidatos(){
+        Iterator<Candidato> iterador=candidatos.iterator();
+        int contador=40;
+        for(int i=0;i<16;i++){
+            Candidato c=new Candidato(i+1, contador+15);
+            candidatos.add(c);
+            contador+=15;
+        }
+        for(int i=0;i<candidatos.size();i++){
+            candidatos.shuffle();
+            for(int j=0;j<10;j++){
+                Candidato actual=iterador.next();
+                actual.historialPosiciones.add(j);
+            }
+            for(int j=10;j<candidatos.size();j++){
+                Candidato actual=iterador.next();
+                actual.historialPosiciones.add(j);
+            }
+        }
+    }
+
 }

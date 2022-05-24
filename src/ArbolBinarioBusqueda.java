@@ -6,9 +6,10 @@ import java.util.NoSuchElementException;
 import src.edd.ArbolBinario;
 import src.edd.Lista;
 import src.edd.Pila;
+import java.io.Serializable;
 
 
-public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> {
+public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> implements Serializable{
     //#####################################################################################################################################################
     //Clase privada para un iterador de árboles bst
     private class Iterador implements Iterator<T>{
@@ -285,10 +286,8 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
             //System.out.println(raiz.altura());
             return raiz;
         }else{//Si el elemento de la raíz no es igual al elemento buscado
-
             if(elemento.compareTo(raiz.elemento)<0){   //y el buscado es menor que elelemento de la raíz
-                if(raiz.hayIzquierdo()){   //si la raíz tiene hijo izquierdo
-                    //entonces buscamos en el subarbol izquierdo
+                if(raiz.hayIzquierdo()){   //si la raíz tiene hijo izquierdo entonces buscamos en el subarbol izquierdo
                     return search2(raiz.izquierdo, elemento);
                 }else{   //si no tiene hijo izquierdo
                     return null;//entonces el elemento buscado no está en el arbol
@@ -320,7 +319,6 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
      * @return
      */
     public boolean buscaElemento(T elemento){
-
         return search(this.raiz,elemento);
     }//FIN DE BUSCA ELEMENTO
 
