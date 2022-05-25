@@ -1,6 +1,10 @@
 package src.edd;
 import java.io.Serializable;
 import java.util.Iterator;
+
+/**
+ * Clase para crear un juego con usuarios y candidatos
+ */
 public class Juego implements Serializable{
 
     ArbolBinarioBusqueda<Jugador> arbol;//el arbol de usuarios
@@ -12,8 +16,7 @@ public class Juego implements Serializable{
     public Juego(){
         arbol=new ArbolBinarioBusqueda<Jugador>();//creamos el arbol de usuarios
         candidatos=new Lista<Candidato>();//creamos la lista de candidatos
-
-        //Por hacer: agregar a los candidatos a la lista
+        agregaCandidatos();//Agregamos los candidatos a la lista de candidatos
     }
 
     /**
@@ -52,28 +55,29 @@ public class Juego implements Serializable{
      * Metodo para agregar candidatos a la lista de candidatos
      */
     public void agregaCandidatos(){
-
-
-        //Todavía revisando
-
-
-        Iterator<Candidato> iterador=candidatos.iterator();
-        int contador=40;
+        
+        int contador=40;//contador para asignar habilidad a cada candidato
+        //Creamos a los candidatos y los ponemos en la lista
         for(int i=0;i<16;i++){
             Candidato c=new Candidato(i+1, contador+15);
             candidatos.add(c);
             contador+=15;
         }
-        for(int i=0;i<candidatos.size();i++){
+        Iterator<Candidato> iterador=candidatos.iterator();
+        //Llenar el historial de posiciones de cada candidato
+        for(int i=0;i<5;i++){
             candidatos.shuffle();
             for(int j=0;j<10;j++){
                 Candidato actual=iterador.next();
-                actual.historialPosiciones.add(j);
+                //System.out.println(actual);
+                actual.historialPosiciones.add(j+1);
             }
-            for(int j=10;j<candidatos.size();j++){
+            for(int j=10;j<16;j++){
                 Candidato actual=iterador.next();
-                actual.historialPosiciones.add(j);
+                //System.out.println(actual);
+                actual.historialPosiciones.add(j+1);
             }
+            iterador=candidatos.iteradorLista();
         }
     }
 

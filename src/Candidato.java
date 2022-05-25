@@ -23,6 +23,8 @@ public class Candidato implements Serializable {
         historialPosiciones.add(n3);
         historialPosiciones.add(n4);
         historialPosiciones.add(n5);*/
+        historialPosiciones=new Lista<Integer>();
+        cuota=0;
         num=numCandidato;
         this.habilidad=habilidad;
     }
@@ -33,5 +35,10 @@ public class Candidato implements Serializable {
      */
     public int calcularCuota(){
         //Por hacer
+        return 0;
+    }
+
+    public String toString(){
+        return ""+num;
     }
 }

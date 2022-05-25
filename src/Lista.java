@@ -20,6 +20,10 @@ public class Lista<T> implements Collection<T>, Serializable {
         public Nodo(T elemento) {
             this.elemento = elemento;
         }
+
+        public void cambiarElem(T elemento){
+            this.elemento=elemento;
+        }
     }//FIN DE CLASE NODO
 
     // Iterador
@@ -744,10 +748,14 @@ public class Lista<T> implements Collection<T>, Serializable {
             posicionAleatoria=random.nextInt(this.size()-1);
             elem1=this.elementoEnPos(i);
             elem2=this.elementoEnPos(posicionAleatoria);
-            this.eliminaEnPos(i);
+            Nodo n1=buscaElemento(elem1);
+            Nodo n2=buscaElemento(elem2);
+            n1.cambiarElem(elem2);
+            n2.cambiarElem(elem1);
+            /*this.eliminaEnPos(i);
             this.insert(i, elem2);
             this.eliminaEnPos(posicionAleatoria);
-            this.insert(posicionAleatoria, elem1);
+            this.insert(posicionAleatoria, elem1);*/
         } 
     }
 }

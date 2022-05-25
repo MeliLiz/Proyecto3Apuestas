@@ -62,7 +62,7 @@ public class Apuestas {
                                         while(ya){
                                             int opc=jugador.Bienvenida();//damos bienvenida con opciones
                                             if(opc==1){ //Si la opcion regresada por el metodo bienvenida es 1, entonces empezamos la partida
-                                                empezar(jugador);
+                                                empezar(jugador, juego);
                                                 ya=false;
                                             }else if(opc==2){//Si la opcion regresada por el metodo bienvenida es 1, entonces regresamos al menu
                                                 menu(juego);
@@ -147,7 +147,7 @@ public class Apuestas {
      * Metodo para comenzar las apuestas y las carreras
      * @param jugador
      */
-    public static void empezar(Jugador jugador){
+    public static void empezar(Jugador jugador, Juego juego){
 
 
 

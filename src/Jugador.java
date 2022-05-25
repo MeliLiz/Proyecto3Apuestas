@@ -29,7 +29,7 @@ public class Jugador implements Comparable, Serializable{
      */
     public int Bienvenida(){
         Scanner scan=new Scanner(System.in);
-        System.out.println("Bienvenid@ a tu sesión");
+        System.out.println("\nBienvenid@ a tu sesión");
         System.out.println("Tu saldo actual es de $"+ cuenta.consultarSaldo());//Mostrar el saldo actual del jugador
         boolean incorrecto=true;
         while(incorrecto){
@@ -72,9 +72,10 @@ public class Jugador implements Comparable, Serializable{
      */
     public void ajustesCuenta(){
         Scanner sc=new Scanner(System.in);
-        System.out.println("*************Ajustes de cuenta********");
+        
         boolean incorrecto=true;
         while(incorrecto){
+            System.out.println("\n*************Ajustes de cuenta********");
             System.out.println("¿Qué deseas hacer?");
             System.out.println("1) Consultar saldo");
             System.out.println("2) Depositar");
@@ -85,7 +86,7 @@ public class Jugador implements Comparable, Serializable{
             System.out.println("7) Volver a mi sesion");
             try{
                 int respuesta=sc.nextInt();
-                if(respuesta<1||respuesta>6){//Si el numero ingresado no corresponde a alguna opcion
+                if(respuesta<1||respuesta>7){//Si el numero ingresado no corresponde a alguna opcion
                     System.out.println("Opcion no valida");
                 }else{
                     switch (respuesta) {
@@ -118,7 +119,7 @@ public class Jugador implements Comparable, Serializable{
                                 try{
                                     int aRetirar=sc.nextInt();
                                     if(cuenta.retirar(aRetirar)==false){
-                                        System.out.println("No se pudo retirar dicha cantidad");
+                                        System.out.println("No se pudo retirar dicha cantidad, ingresa una cantidad valida");
                                     }else{
                                         incorrecto3=false;
                                         incorrecto=false;
@@ -130,18 +131,20 @@ public class Jugador implements Comparable, Serializable{
                             }
                             break;
                         case 4://Historial de movimientos
-                            System.out.println("*********Historial de movimientos******************");
+                            System.out.println("\n*********Historial de movimientos******************");
                             System.out.println(cuenta.movimientos);
                         break;
                         case 5://Ver apuestas ganadas
-                            System.out.println("**********Apuestas ganadas**********************");
+                            System.out.println("\n**********Apuestas ganadas**********************");
                             System.out.println(cuenta.apuestasGanadas);
                         break;
                         case 6://Ver apuestas perdidas
-                            System.out.println("**********Apuestas perdidas**********************");
+                            System.out.println("\n**********Apuestas perdidas**********************");
                             System.out.println(cuenta.apuestasPerdidas);
                         break;
                         default://volver a la sesion
+                            incorrecto3=false;
+                            incorrecto=false;
                             break;
                     }
                 }
