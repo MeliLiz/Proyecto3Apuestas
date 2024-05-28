@@ -2,7 +2,7 @@ Estructuras de Datos
 Practica 4
 
 Nombres:
-Fernández Blancas Melissa Lizbeth           319281778
+Fernández Blancas Melissa Lizbeth 
 
 Para compilar: javac -d . src/*.java
 Para ejecutar Practica4: java src.edd.Main
